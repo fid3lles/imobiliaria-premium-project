@@ -38,7 +38,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
         <a href="/" className="flex items-center h-full w-28">
           <img
-            src="../../../../public/assets/logo_premium.png"
+            src="/assets/logo_premium.png"
             alt="Premium imobiliária Logo"
             className="object-contain h-20"
           />
