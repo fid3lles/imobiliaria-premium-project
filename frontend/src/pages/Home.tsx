@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <Section
-        bg="../public/assets/hero_main_section.jpg"
+        bg="/assets/hero_main_section.jpg"
         className="min-h-160.5 flex items-center"
       >
         <HomeSearch
