@@ -16,7 +16,7 @@ services:
     build:
       context: ../frontend
       args:
-        VITE_API_BASE: /api
+        VITE_BACKEND_URL: /api
     container_name: frontend
     restart: unless-stopped
     ports:
