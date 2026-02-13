@@ -98,7 +98,10 @@ export default function HomeSearch({
 }: Props) {
   const navigate = useNavigate();
 
-  const SEARCH_ROUTE = "/imobiliaria-core/api/v1/busca";
+  // ---------------------------
+  // ✅ comportamento "FiltersPanel" (carrega opções do backend)
+  // ---------------------------
+  const API_BASE = `${import.meta.env.VITE_BACKEND_URL}/imobiliaria-core/api/v1`;
 
   const [tab, setTab] = useState<TabKey>("comprar");
 
@@ -138,7 +141,7 @@ export default function HomeSearch({
       valorMax: form.valorMax,
     });
 
-    navigate(`${SEARCH_ROUTE}?${params.toString()}`);
+    navigate(`${API_BASE}/busca?${params.toString()}`);
   }
 
   function handleSubmitCode(e: React.FormEvent) {
@@ -151,11 +154,6 @@ export default function HomeSearch({
 
     navigate(`/imovel/${encodeURIComponent(code)}`);
   }
-
-  // ---------------------------
-  // ✅ comportamento "FiltersPanel" (carrega opções do backend)
-  // ---------------------------
-  const API_BASE = import.meta.env.VITE_BACKEND_URL;
 
   const [cidades, setCidades] = useState<string[]>([]);
   const [cidadesLoading, setCidadesLoading] = useState(false);
