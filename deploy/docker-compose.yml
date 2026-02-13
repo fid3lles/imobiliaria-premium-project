@@ -21,6 +21,8 @@ services:
       - "80:80"
     depends_on:
       - backend
+    args:
+      VITE_API_BASE: http://localhost:8080
     networks:
       - appnet
 

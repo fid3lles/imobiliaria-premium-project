@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4 flex flex-col justify-center items-center">
             <img
-              src="../../../../public/assets/logo_premium.png"
+              src="/assets/logo_premium.png"
               alt="Imobiliária Premium"
               className="h-25 object-contain"
             />
