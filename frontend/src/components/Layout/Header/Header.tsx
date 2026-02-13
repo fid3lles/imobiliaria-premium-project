@@ -32,15 +32,13 @@ export default function Header() {
 
   const linkBase =
     "block w-full rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-wide transition";
-  const linkHover =
-    "hover:bg-white/10 hover:drop-shadow-[0_0_6px_rgba(255,214,214,0.25)]";
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow bg-linear-to-r from-[#64080F] via-[#91040F] via-[#9A030F] to-[#C20010]">
       <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
         <a href="/" className="flex items-center h-full w-28">
           <img
-            src="/assets/logo_premium.png"
+            src="../../../../public/assets/logo_premium.png"
             alt="Premium imobiliária Logo"
             className="object-contain h-20"
           />
@@ -148,13 +146,7 @@ export default function Header() {
               to="/busca"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                cn(
-                  linkBase,
-                  isActive ? "bg-white/10" : "bg-transparent",
-                  linkHover,
-                )
-              }
+              className={cn(linkBase)}
             >
               Comprar
             </NavLink>
@@ -163,13 +155,7 @@ export default function Header() {
               to="/busca"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                cn(
-                  linkBase,
-                  isActive ? "bg-white/10" : "bg-transparent",
-                  linkHover,
-                )
-              }
+              className={cn(linkBase)}
             >
               Alugar
             </NavLink>
@@ -178,13 +164,7 @@ export default function Header() {
               to="/anunciar"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                cn(
-                  linkBase,
-                  isActive ? "bg-white/10" : "bg-transparent",
-                  linkHover,
-                )
-              }
+              className={cn(linkBase)}
             >
               Anunciar meu imóvel
             </NavLink>
