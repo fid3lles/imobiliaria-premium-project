@@ -15,14 +15,14 @@ services:
   frontend:
     build:
       context: ../frontend
+      args:
+        VITE_API_BASE: /api
     container_name: frontend
     restart: unless-stopped
     ports:
       - "80:80"
     depends_on:
       - backend
-    args:
-      VITE_API_BASE: http://localhost:8080
     networks:
       - appnet
 
