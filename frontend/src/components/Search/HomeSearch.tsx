@@ -98,7 +98,7 @@ export default function HomeSearch({
 }: Props) {
   const navigate = useNavigate();
 
-  const SEARCH_ROUTE = "/busca";
+  const SEARCH_ROUTE = "/imobiliaria-core/api/v1/busca";
 
   const [tab, setTab] = useState<TabKey>("comprar");
 

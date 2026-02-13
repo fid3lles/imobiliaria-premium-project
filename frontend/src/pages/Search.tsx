@@ -32,7 +32,7 @@ function Search() {
   }, [filtersOpen]);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       {/* ✅ Sidebar no desktop / Modal no mobile (mesmo componente, SEM desmontar) */}
       <div className="hidden md:block">
         <FiltersPanel onResult={handleResult} externalPage={page} />
