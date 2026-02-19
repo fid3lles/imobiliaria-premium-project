@@ -141,7 +141,7 @@ export default function HomeSearch({
       valorMax: form.valorMax,
     });
 
-    navigate(`${API_BASE}/busca?${params.toString()}`);
+    navigate(`/busca?${params.toString()}`);
   }
 
   function handleSubmitCode(e: React.FormEvent) {
