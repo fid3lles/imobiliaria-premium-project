@@ -6,9 +6,12 @@ services:
     restart: unless-stopped
     volumes:
       - sqlite_data:/data
+      - propriedades_media:/data/propriedades
     environment:
       SPRING_PROFILES_ACTIVE: prod
       CORS_ALLOWED_ORIGINS: "http://imobiliariapremium.com.br"
+      APP_MEDIA_BASE_DIR: /data/propriedades
+      APP_MEDIA_BASE_URL: /propriedades
     networks:
       - appnet
 
@@ -28,6 +31,7 @@ services:
 
 volumes:
   sqlite_data:
+  propriedades_media:
 
 networks:
   appnet:

@@ -3,11 +3,13 @@ package com.github.fid3lles.imobiliaria_core.domain.propriedade;
 import com.github.fid3lles.imobiliaria_core.domain.utils.StringListJsonConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Propriedade {
