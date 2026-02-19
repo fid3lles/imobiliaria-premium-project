@@ -242,7 +242,7 @@ async function fetchStringList(url: string): Promise<string[]> {
 }
 
 function buildSearchUrl(baseUrl: string, filters: Filters) {
-  const url = new URL(baseUrl);
+  const url = new URL(baseUrl, window.location.origin);
 
   const add = (key: string, value: unknown) => {
     if (value === undefined || value === null) return;
@@ -387,10 +387,9 @@ export default function FiltersPanel({
     setSearchError(null);
 
     try {
-      const url = buildSearchUrl(
-        `${API_URL}/imobiliaria-core/api/v1/busca`,
-        next,
-      );
+      const path = await `${API_URL}/imobiliaria-core/api/v1/busca`;
+
+      const url = buildSearchUrl(path, next);
 
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Falha na busca (${res.status})`);
