@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 
 import java.io.IOException;
@@ -23,7 +24,6 @@ public class PropriedadeService {
         this.propriedadeRepository = propriedadeRepository;
     }
 
-    // defaults pra não quebrar caso você esqueça de setar as envs/properties
     @Value("${app.media.base-dir:/data/propriedades}")
     private String mediaBaseDir;
 
@@ -86,11 +86,7 @@ public class PropriedadeService {
                     .map(Path::toString)
                     .filter(this::isImagem)
                     .sorted()
-                    .map(nomeArquivo -> {
-                        // IMPORTANTÍSSIMO: encode do nome do arquivo (espaços/acentos/etc)
-                        String encoded = UriUtils.encodePathSegment(nomeArquivo, StandardCharsets.UTF_8);
-                        return mediaBaseUrl + "/" + propriedadeId + "/" + encoded;
-                    })
+                    .map(nomeArquivo -> toAbsoluteMediaUrl(propriedadeId, nomeArquivo)) // <- aqui
                     .toList();
         } catch (IOException e) {
             return List.of();
@@ -109,5 +105,19 @@ public class PropriedadeService {
                 .flatMap(List::stream)
                 .distinct()
                 .toList();
+    }
+
+    private String toAbsoluteMediaUrl(Long id, String filename) {
+        // encode do nome do arquivo (espaços/acentos/etc)
+        String encoded = UriUtils.encodePathSegment(filename, StandardCharsets.UTF_8);
+
+        // Base: https://imobiliariapremium.com.br  (sem /imobiliaria-core/api)
+        String base = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .replacePath(null)
+                .replaceQuery(null)
+                .build()
+                .toUriString();
+
+        return base + mediaBaseUrl + "/" + id + "/" + encoded;
     }
 }
