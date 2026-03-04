@@ -323,11 +323,6 @@ export default function FiltersPanel({
   const [bairrosLoading, setBairrosLoading] = useState(false);
   const [bairrosError, setBairrosError] = useState<string | null>(null);
 
-  const condominios = useMemo(
-    () => ["Condomínio 1", "Condomínio 2", "Condomínio 3"],
-    [],
-  );
-
   const [showMore, setShowMore] = useState(false);
 
   const [internasOptions, setInternasOptions] = useState<string[]>([]);
