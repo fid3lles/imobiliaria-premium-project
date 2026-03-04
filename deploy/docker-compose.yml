@@ -9,7 +9,8 @@ services:
       - propriedades_media:/data/propriedades
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      CORS_ALLOWED_ORIGINS: "http://imobiliariapremium.com.br"
+      # depois que tiver https, troque para https://
+      CORS_ALLOWED_ORIGINS: "https://imobiliariapremium.com.br"
       APP_MEDIA_BASE_DIR: /data/propriedades
       APP_MEDIA_BASE_URL: /propriedades
     networks:
@@ -22,16 +23,49 @@ services:
         VITE_BACKEND_URL: /api
     container_name: frontend
     restart: unless-stopped
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     depends_on:
       - backend
+    networks:
+      - appnet
+
+  edge_nginx:
+    image: nginx:1.27-alpine
+    container_name: edge_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./edge/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./edge/www:/var/www/certbot
+      - letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - frontend
+    networks:
+      - appnet
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - ./edge/www:/var/www/certbot
+    entrypoint: /bin/sh -c
+    command: >
+      "trap exit TERM;
+      while :; do
+        certbot renew --webroot -w /var/www/certbot --quiet;
+        sleep 12h;
+      done"
     networks:
       - appnet
 
 volumes:
   sqlite_data:
   propriedades_media:
+  letsencrypt:
 
 networks:
   appnet:
