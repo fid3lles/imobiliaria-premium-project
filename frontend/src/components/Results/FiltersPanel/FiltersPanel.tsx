@@ -705,24 +705,6 @@ export default function FiltersPanel({
             </div>
           </div>
 
-          {/* Condomínio */}
-          <div>
-            <SectionTitle>Condomínio</SectionTitle>
-            <select
-              name="condominio"
-              className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-200"
-              value={filters.condominio ?? ""}
-              onChange={(e) => setField("condominio", e.target.value)}
-            >
-              <option value="">Qualquer</option>
-              {condominios.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {/* Tipo do imóvel (endpoint) */}
           <div>
             <SectionTitle>Tipo do imóvel</SectionTitle>

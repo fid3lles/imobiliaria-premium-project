@@ -32,7 +32,7 @@ export default function Footer() {
 
               <div className="flex items-start gap-3 text-sm text-white/80">
                 <FiMail className="mt-0.5 shrink-0" />
-                <span>contato@premiumimobiliaria.com</span>
+                <span>contato@imobiliariapremium.com.br</span>
               </div>
 
               <div className="flex items-start gap-3 text-sm text-white/80">
